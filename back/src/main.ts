@@ -11,10 +11,3 @@ async function bootstrap() {
 bootstrap().then(() => {
   console.log(`Server started on ${3100} port`);
 });
-//  TODO:
-// 1. Добавление исходящих
-// 2. Удаление исходящих
-
-// 1. Получение входящих/исходящих
-// 4. Удаление входящих
-//
