@@ -1,38 +1,34 @@
-<template>
-  <q-card style="width: 500px">
-    <q-card-section class="row items-center q-pb-none justify-between">
-      <div class="text-h6" v-if="!data?.id">Отправить письмо</div>
-      <div class="text-h6" v-else>Отправить черновик</div>
-      <q-btn icon="close" flat round color="negative" @click="closeFormFunc" />
-    </q-card-section>
+<template lang="pug">
+q-card(style="width: 500px")
+  q-card-section(class="row items-center q-pb-none justify-between")
+    div(class="text-h6" v-if="!data?.id") Отправить письмо
+    div(class="text-h6" v-else) Отправить черновик
+    q-btn(icon="close" flat round color="negative" @click="closeFormFunc")
 
-    <q-card-section>
-      <q-input
-        v-model="mail.to"
-        label="Кому"
-        :rules="[(val) => (val && val.length >= 2) || 'Минимум 2 символа']"
-      />
-      <q-input v-model="mail.theme" label="Тема" />
-      <q-input
-        v-model="mail.text"
-        label="Сообщение"
-        type="textarea"
-        :rules="[(val) => (val && val.length >= 1) || 'Минимум 1 символ']"
-      />
+  q-card-section
+    q-input(
+      v-model="mail.to"
+      label="Кому"
+      :rules="[(val) => (val && val.length >= 2) || 'Минимум 2 символа']"
+    )
+    q-input(v-model="mail.theme" label="Тема")
+    q-input(
+      v-model="mail.text"
+      label="Сообщение"
+      type="textarea"
+      :rules="[(val) => (val && val.length >= 1) || 'Минимум 1 символ']"
+    )
 
-      <q-checkbox
-        v-if="!data?.id"
-        v-model="mail.draft"
-        label="Сохранить как черновик"
-        color="primary"
-      />
-    </q-card-section>
+    q-checkbox(
+      v-if="!data?.id"
+      v-model="mail.draft"
+      label="Сохранить как черновик"
+      color="primary"
+    )
 
-    <q-card-actions>
-      <q-btn label="Отправить" color="primary" @click="sendMailFunc" />
-      <q-btn label="Сбросить" color="negative" @click="clearFormFunc" />
-    </q-card-actions>
-  </q-card>
+  q-card-actions
+    q-btn(label="Отправить" color="primary" @click="sendMailFunc")
+    q-btn(label="Сбросить" color="negative" @click="clearFormFunc")
 </template>
 
 <script setup>

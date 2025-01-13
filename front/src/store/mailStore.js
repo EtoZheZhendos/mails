@@ -6,6 +6,7 @@ export const useMailStore = defineStore("mail", {
     incomingEmails: [],
     outgoingEmails: [],
     selectedMail: null,
+    selectedMails: [],
     loading: false,
     error: null,
   }),
@@ -13,8 +14,20 @@ export const useMailStore = defineStore("mail", {
     getIncomingEmails: (state) => state.incomingEmails,
     getOutgoingEmails: (state) => state.outgoingEmails,
     getSelectedMail: (state) => state.selectedMail,
+    getSelectedMails: (state) => state.selectedMails,
   },
   actions: {
+     addSelectedMail(id) {
+      if (!this.selectedMails.includes(id)) {
+        this.selectedMails.push(id);
+      }
+    },
+    clearSelectedMails() {
+      this.selectedMails = [];
+    },
+    removeSelectedMail(id) {
+      this.selectedMails = this.selectedMails.filter((mailId) => mailId !== id);
+    },
     async fetchIncomingMails() {
       this.loading = true;
       this.error = null;
@@ -87,11 +100,12 @@ export const useMailStore = defineStore("mail", {
         await api({
           url: `/mail/${id}`,
           method: "DELETE",
+          data: { id: id }, 
         });
         await this.fetchIncomingMails();
         await this.fetchOutgoingMails();
       } catch (error) {
-        this.error = "Не удалось удалить письмо. Попробуйте позже.";
+        this.error = "Не удалось удалить письма. Попробуйте позже.";
       } finally {
         this.loading = false;
       }
