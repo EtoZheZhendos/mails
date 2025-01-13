@@ -1,30 +1,27 @@
-<template>
-  <q-page>
-    <q-tabs v-model="tab" align="justify">
-      <q-tab name="incoming" label="Входящие" />
-      <q-tab name="outgoing" label="Исходящие" />
-    </q-tabs>
-    <q-separator />
-    <q-tab-panels v-model="tab" animated>
-      <q-tab-panel name="incoming" animated>
-        <MailList @visible-message="visiableMassage" />
-        <q-dialog v-model="visibleMaileItem">
-          <MailItem :data="mailInfo" @close="closeDialog" />
-        </q-dialog>
-      </q-tab-panel>
-      <q-tab-panel name="outgoing" animated>
-        <OutgoingMailList @visible-message="visiableMassage" />
-        <q-dialog v-model="visibleMaileItem">
-          <MailItem
-            :data="mailInfo"
-            @close="closeDialog"
-            v-if="!mailInfo.draft"
-          />
-          <send-mail-form :data="mailInfo" v-else @close-form="closeDialog" />
-        </q-dialog>
-      </q-tab-panel>
-    </q-tab-panels>
-  </q-page>
+<template lang="pug">
+q-page
+  q-tabs(v-model="tab" align="justify")
+    q-tab(name="incoming" label="Входящие")
+    q-tab(name="outgoing" label="Исходящие")
+  q-separator
+  q-tab-panels(v-model="tab" animated)
+    q-tab-panel(name="incoming" animated)
+      mail-list(@visible-message="visiableMassage")
+      q-dialog(v-model="visibleMaileItem")
+        mail-item(:data="mailInfo" @close="closeDialog")
+    q-tab-panel(name="outgoing" animated)
+      outgoing-mail-list(@visible-message="visiableMassage")
+      q-dialog(v-model="visibleMaileItem")
+        mail-item(
+          :data="mailInfo"
+          @close="closeDialog"
+          v-if="!mailInfo.draft"
+        )
+        send-mail-form(
+          :data="mailInfo"
+          v-else
+          @close-form="closeDialog"
+        )
 </template>
 
 <script setup>

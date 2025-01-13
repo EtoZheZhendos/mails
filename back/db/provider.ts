@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { MailEntity } from '../mail/entities/mails.entity';
+import { MailEntity } from '../src/mail/entities/mails.entity';
 
 export const databaseProviders = [
   {

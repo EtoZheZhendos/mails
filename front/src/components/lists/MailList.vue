@@ -9,13 +9,13 @@ q-list(bordered separator)
     @sendDraft="handleSendDraft"
   )
 
-q-banner(v-if="items.length === 0" class="bg-grey-2 text-black")
+q-banner.bg-grey-2.text-black(v-if="items.length === 0")
   | Нет писем
 
-q-banner(v-if="error" class="bg-negative text-white")
+q-banner.bg-negative.text-white(v-if="error")
   | {{ error }}
 
-q-spinner(v-if="loading" size="50px" class="q-mt-xl")
+q-spinner.q-mt-xl(v-if="loading" size="50px")
 </template>
 
 <script setup>

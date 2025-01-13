@@ -1,8 +1,8 @@
 <template lang="pug">
 q-card(style="width: 500px")
-  q-card-section(class="row items-center q-pb-none justify-between")
-    div(class="text-h6" v-if="!data?.id") Отправить письмо
-    div(class="text-h6" v-else) Отправить черновик
+  q-card-section.row.items-center.q-pb-none.justify-between
+    div.text-h6(v-if="!data?.id") Отправить письмо
+    div.text-h6(v-else) Отправить черновик
     q-btn(icon="close" flat round color="negative" @click="closeFormFunc")
 
   q-card-section

@@ -9,7 +9,7 @@ q-page
       @send-draft="sendDraftFn"
     )
 
-  q-banner(v-if="outgoingMails.length === 0" class="bg-grey-2 text-black")
+  q-banner.bg-grey-2.text-black(v-if="outgoingMails.length === 0")
     | Нет исходящих писем
 </template>
 

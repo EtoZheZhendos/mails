@@ -7,7 +7,7 @@ q-item(clickable @click="openMessageById")
     q-item-label(v-if="!isIncomingMail")
       | {{ !!data.draft ? "Черновик" : "Отправлено" }}
 
-  q-item-section(side class="row")
+  q-item-sectio.side.row
     q-checkbox(
       v-model="isChecked"
       @update:model-value="handleCheckboxChange"
